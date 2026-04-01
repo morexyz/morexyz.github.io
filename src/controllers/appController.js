@@ -9,11 +9,20 @@ export function createAppController(ctx) {
   const animationController = createAnimationController(ctx);
   const routeController = createRouteController({ ...ctx, animationController });
   const interactionController = createInteractionController();
+  let interactionsInitialized = false;
   const router = createRouter({ onRoute: async (route) => {
     renderLayout(root, route.path || '/home');
-    interactionController.init(root);
     await routeController.load(route);
   }});
 
-  return { start(){ root.dataset.jsEnabled = 'true'; router.start(); } };
+  return {
+    start() {
+      root.dataset.jsEnabled = 'true';
+      if (!interactionsInitialized) {
+        interactionController.init(root);
+        interactionsInitialized = true;
+      }
+      router.start();
+    }
+  };
 }
