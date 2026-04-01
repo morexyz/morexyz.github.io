@@ -13,7 +13,7 @@ export function createRouteController({ state, animationController }) {
       main.innerHTML = mod.render();
       const shell = main.querySelector('.route-shell');
       animationController.onPageMounted(shell || main);
-      if (document.documentElement.dataset.inputMode === 'keyboard') {
+      if (document.body?.dataset.inputMode === 'keyboard') {
         main.focus();
       }
     }
