@@ -2,17 +2,18 @@
   --header-height-collapsed: 4rem;
   --header-height-expanded: 17rem;
   --header-height: var(--header-height-collapsed);
+  --header-offset: var(--header-height-collapsed);
 }
 
-.site-shell { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
-.site-header { position: sticky; top: 0; z-index: 20; min-height: var(--header-height); backdrop-filter: blur(8px); background: var(--header-bg); border-bottom: 1px solid var(--header-border); box-shadow: var(--header-shadow); transition: background-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease), border-color var(--fast) var(--ease); }
+.site-shell { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; }
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 20; min-height: var(--header-height); backdrop-filter: blur(8px); background: var(--header-bg); border-bottom: 1px solid var(--header-border); box-shadow: var(--header-shadow); transition: background-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease), border-color var(--fast) var(--ease); }
 .site-header.is-scrolled { background: var(--header-bg-scrolled); border-bottom-color: var(--header-border-scrolled); box-shadow: var(--header-shadow-scrolled); }
 .site-header[data-menu-open='true'] { --header-height: var(--header-height-expanded); }
 .site-header-inner, .site-footer, .page-container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
 .site-header-inner { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; min-height: var(--header-height-collapsed); padding: .8rem 0; gap: .8rem; }
 .brand { font-size: .95rem; font-weight: 600; }
-.page-container { padding: var(--space-6) 0 var(--space-7); }
-.page-container :where(section, [id]) { scroll-margin-top: calc(var(--header-height) + var(--space-3)); }
+.page-container { padding: calc(var(--header-offset) + var(--space-6)) 0 var(--space-7); }
+.page-container :where(section, [id]) { scroll-margin-top: calc(var(--header-offset) + var(--space-3)); }
 .site-footer { padding: 1.2rem 0 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: .9rem; }
 .grid { display: grid; gap: var(--space-4); }
 .grid.cols-2 { grid-template-columns: 1fr; }
