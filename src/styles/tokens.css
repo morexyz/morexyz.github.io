@@ -9,7 +9,14 @@
   --ok: #50d89a;
   --warn: #f3be58;
   --border: rgba(180, 198, 255, 0.2);
+  --border-strong: rgba(180, 198, 255, 0.34);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --header-bg: rgba(7, 11, 21, 0.74);
+  --header-bg-scrolled: rgba(7, 11, 21, 0.86);
+  --header-border: var(--border);
+  --header-border-scrolled: var(--border-strong);
+  --header-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+  --header-shadow-scrolled: 0 8px 22px rgba(0, 0, 0, 0.24);
   --radius: 14px;
   --radius-sm: 10px;
   --space-1: 0.25rem;

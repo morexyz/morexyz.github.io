@@ -1,6 +1,7 @@
 export function createInteractionController(){
   let didBindHover = false;
   let teardownNav = () => {};
+  let teardownHeaderScroll = () => {};
 
   function bindNav(root) {
     const header = root.querySelector('.site-header');
@@ -78,9 +79,27 @@ export function createInteractionController(){
     };
   }
 
+  function bindHeaderScroll(root) {
+    const header = root.querySelector('.site-header');
+    if (!header) return () => {};
+
+    const syncScrolledState = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+
+    syncScrolledState();
+    window.addEventListener('scroll', syncScrolledState, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', syncScrolledState);
+    };
+  }
+
   return { init(root){
     teardownNav();
+    teardownHeaderScroll();
     teardownNav = bindNav(root);
+    teardownHeaderScroll = bindHeaderScroll(root);
     if (!didBindHover) {
       root.addEventListener('mouseover', (e)=>{ if(e.target.closest('.btn,.card,.nav-link')) e.target.closest('.btn,.card,.nav-link')?.classList.add('is-hover'); });
       root.addEventListener('mouseout', (e)=>{ e.target.closest('.is-hover')?.classList.remove('is-hover'); });
