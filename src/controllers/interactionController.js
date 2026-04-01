@@ -130,12 +130,15 @@ export function createInteractionController(){
     if (!didBindInputMode) {
       const setInputMode = (mode) => {
         document.documentElement.dataset.inputMode = mode;
+        document.body.dataset.inputMode = mode;
       };
       setInputMode('pointer');
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') setInputMode('keyboard');
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        setInputMode('keyboard');
       });
       document.addEventListener('pointerdown', () => setInputMode('pointer'));
+      document.addEventListener('mousedown', () => setInputMode('pointer'));
       didBindInputMode = true;
     }
     if (!didBindHover) {
