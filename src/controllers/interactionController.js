@@ -1,5 +1,6 @@
 export function createInteractionController(){
   let didBindHover = false;
+  let didBindInputMode = false;
   let teardownNav = () => {};
   let teardownHeaderScroll = () => {};
   let teardownHeaderMetrics = () => {};
@@ -126,6 +127,17 @@ export function createInteractionController(){
     teardownNav = bindNav(root);
     teardownHeaderScroll = bindHeaderScroll(root);
     teardownHeaderMetrics = bindHeaderMetrics(root);
+    if (!didBindInputMode) {
+      const setInputMode = (mode) => {
+        document.documentElement.dataset.inputMode = mode;
+      };
+      setInputMode('pointer');
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') setInputMode('keyboard');
+      });
+      document.addEventListener('pointerdown', () => setInputMode('pointer'));
+      didBindInputMode = true;
+    }
     if (!didBindHover) {
       root.addEventListener('mouseover', (e)=>{ if(e.target.closest('.btn,.card,.nav-link')) e.target.closest('.btn,.card,.nav-link')?.classList.add('is-hover'); });
       root.addEventListener('mouseout', (e)=>{ e.target.closest('.is-hover')?.classList.remove('is-hover'); });
