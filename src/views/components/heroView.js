@@ -1,0 +1,4 @@
+import { heroSignalGraphic } from '../../modules/svg/heroSignalGraphic.js';
+export function heroView(){
+  return `<section class="hero panel"><div><p class="badge">MMU · FAIE · MEngSc (Research)</p><h1 class="hero-title">On-Device Adaptive Audio Intelligence for IoT Agents</h1><p>Privacy-first ESP32-based acoustic anomaly monitoring with real-time TinyML inference and robust on-device adaptation under domain drift.</p><div class="badges"><span class="badge">ESP32-S3</span><span class="badge">TFLM int8</span><span class="badge">log-mel / MFCC</span><span class="badge">No raw audio upload</span></div><div class="cta-row"><a class="btn" href="#/system">View Architecture</a><a class="btn" href="#/methodology">View Methodology</a></div></div><div class="hero-visual">${heroSignalGraphic()}</div></section>`;
+}

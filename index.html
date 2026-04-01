@@ -1,184 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>On-Device Adaptive Audio Intelligence for IoT Agents</title>
-  <meta name="description" content="A progressive Vanilla JS SPA for the research proposal: On-Device Adaptive Audio Intelligence for IoT Agents." />
-  <meta name="theme-color" content="#0b1020" />
-  <link rel="preload" href="./styles/main.css" as="style" />
-  <link rel="stylesheet" href="./styles/main.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-
-  <header class="site-header glass">
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <div>
-        <p class="eyebrow">Research Proposal</p>
-        <h1 class="brand-title">On-Device Adaptive Audio Intelligence for IoT Agents</h1>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="On-Device Adaptive Audio Intelligence for IoT Agents - MMU MEngSc Research Proposal" />
+    <title>On-Device Adaptive Audio Intelligence for IoT Agents</title>
+    <link rel="stylesheet" href="./src/styles/tokens.css" />
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/layout.css" />
+    <link rel="stylesheet" href="./src/styles/components.css" />
+    <link rel="stylesheet" href="./src/styles/animations.css" />
+    <link rel="stylesheet" href="./src/styles/pages.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div id="app" data-js-enabled="false">
+      <header class="shell-header">
+        <h1>On-Device Adaptive Audio Intelligence for IoT Agents</h1>
+        <p>Academic research proposal website. If JavaScript is disabled, use direct section links below.</p>
+        <nav aria-label="Fallback navigation">
+          <ul>
+            <li><a href="#/home">Home</a></li>
+            <li><a href="#/research">Research</a></li>
+            <li><a href="#/system">System</a></li>
+            <li><a href="#/methodology">Methodology</a></li>
+            <li><a href="#/evaluation">Evaluation</a></li>
+            <li><a href="#/timeline">Timeline</a></li>
+            <li><a href="#/references">References</a></li>
+            <li><a href="#/about">About</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main id="main-content" tabindex="-1">
+        <section class="panel">
+          <h2>Loading application…</h2>
+          <p>Please enable JavaScript for the full interactive SPA experience.</p>
+        </section>
+      </main>
     </div>
-
-    <nav class="site-nav" aria-label="Primary">
-      <a href="#home" data-route="home">Overview</a>
-      <a href="#research" data-route="research">Research</a>
-      <a href="#system" data-route="system">System</a>
-      <a href="#evaluation" data-route="evaluation">Evaluation</a>
-    </nav>
-  </header>
-
-  <main id="main-content">
-    <div id="app" hidden aria-live="polite"></div>
-
-    <div id="fallback-content" class="fallback-content">
-      <section id="home" class="fallback-panel hero-panel">
-        <div class="hero-copy">
-          <p class="eyebrow">MMU · FAIE · Master of Engineering Science (Research)</p>
-          <h2>Privacy-first audio intelligence at the edge.</h2>
-          <p class="lead">
-            A research proposal for an ESP32-based IoT audio agent that captures machine sound,
-            performs on-device inference, and adapts over time without sending raw audio to the cloud.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#system">View architecture</a>
-            <a class="button button-secondary" href="#evaluation">See evaluation plan</a>
-          </div>
-        </div>
-
-        <div class="hero-visual card-grid">
-          <article class="metric-card glass">
-            <span class="metric-label">Target hardware</span>
-            <strong>ESP32 / ESP32-S3</strong>
-          </article>
-          <article class="metric-card glass">
-            <span class="metric-label">Audio path</span>
-            <strong>I2S MEMS Mic → TinyML</strong>
-          </article>
-          <article class="metric-card glass">
-            <span class="metric-label">Model style</span>
-            <strong>int8 log-mel + lightweight CNN</strong>
-          </article>
-          <article class="metric-card glass">
-            <span class="metric-label">Adaptation</span>
-            <strong>On-device, confidence-gated</strong>
-          </article>
-        </div>
+    <noscript>
+      <section class="noscript-notice" role="status">
+        <h2>JavaScript Disabled</h2>
+        <p>The core research summary is still visible, but route transitions, diagrams, and interactive modules require JavaScript.</p>
       </section>
-
-      <section id="research" class="fallback-panel section-shell">
-        <div class="section-heading">
-          <p class="eyebrow">Problem · Objectives · Research Gap</p>
-          <h2>Why this research matters</h2>
-        </div>
-        <div class="card-grid three-up">
-          <article class="content-card glass">
-            <h3>Problem</h3>
-            <p>Static embedded audio models degrade when room acoustics, microphone position, machinery aging, or background noise change.</p>
-          </article>
-          <article class="content-card glass">
-            <h3>Objectives</h3>
-            <p>Build a full ESP32 audio pipeline and add lightweight on-device adaptation for robust anomaly detection over time.</p>
-          </article>
-          <article class="content-card glass">
-            <h3>Research gap</h3>
-            <p>Most embedded audio work proves inference feasibility, but not privacy-preserving long-term adaptation under drift.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="system" class="fallback-panel section-shell">
-        <div class="section-heading">
-          <p class="eyebrow">System Architecture</p>
-          <h2>Audio capture, inference, and safe adaptation on device</h2>
-        </div>
-
-        <svg class="pipeline-svg" viewBox="0 0 1200 500" role="img" aria-label="System pipeline">
-          <defs>
-            <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#7c9cff"></stop>
-              <stop offset="100%" stop-color="#48d7b0"></stop>
-            </linearGradient>
-          </defs>
-          <g class="pipeline-track" fill="none" stroke="url(#pipeGrad)" stroke-width="6" stroke-linecap="round">
-            <path id="pipeline-main" d="M120 250 H340 H520 H760 H1020"></path>
-          </g>
-          <g class="node-layer">
-            <g class="pipeline-node" transform="translate(120,250)">
-              <circle r="52"></circle>
-              <text y="8" text-anchor="middle">I2S Mic</text>
-            </g>
-            <g class="pipeline-node" transform="translate(340,250)">
-              <circle r="52"></circle>
-              <text y="-6" text-anchor="middle">Capture</text>
-              <text y="18" text-anchor="middle">Framing</text>
-            </g>
-            <g class="pipeline-node" transform="translate(520,250)">
-              <circle r="52"></circle>
-              <text y="-6" text-anchor="middle">Features</text>
-              <text y="18" text-anchor="middle">log-mel / MFCC</text>
-            </g>
-            <g class="pipeline-node" transform="translate(760,250)">
-              <circle r="52"></circle>
-              <text y="-6" text-anchor="middle">TinyML</text>
-              <text y="18" text-anchor="middle">int8 CNN</text>
-            </g>
-            <g class="pipeline-node" transform="translate(1020,250)">
-              <circle r="52"></circle>
-              <text y="-6" text-anchor="middle">Local Alert</text>
-              <text y="18" text-anchor="middle">LED / Buzzer</text>
-            </g>
-          </g>
-        </svg>
-
-        <div class="card-grid two-up">
-          <article class="content-card glass">
-            <h3>Stabilization</h3>
-            <p>VAD gating, running normalization, and conservative thresholds reduce noisy updates.</p>
-          </article>
-          <article class="content-card glass">
-            <h3>Learning</h3>
-            <p>A compact prototype in embedding space updates only on high-confidence normal segments, with rollback protection.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="evaluation" class="fallback-panel section-shell">
-        <div class="section-heading">
-          <p class="eyebrow">Evaluation & Timeline</p>
-          <h2>Measure robustness, resources, and real-world usefulness</h2>
-        </div>
-
-        <div class="card-grid three-up">
-          <article class="content-card glass">
-            <h3>Metrics</h3>
-            <p>AUROC, false alarms per hour, latency, RAM/flash, energy per inference, and adaptation settling time.</p>
-          </article>
-          <article class="content-card glass">
-            <h3>Conditions</h3>
-            <p>Noise variation, microphone placement changes, abrupt environment shifts, and gradual drift.</p>
-          </article>
-          <article class="content-card glass">
-            <h3>Data</h3>
-            <p>MIMII, ToyADMOS, DCASE Task 2 ASD, plus a self-collected BLDC fan dataset.</p>
-          </article>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <p>Student: Milad Shahi · Supervisor: Assoc. Prof. Dr. Tan Yi Fei · Co-Supervisor: Ir. Dr. Siva Priya a/p Thiagarajah</p>
-  </footer>
-
-  <noscript>
-    <style>
-      #app { display: none !important; }
-      #fallback-content { display: block !important; }
-    </style>
-  </noscript>
-
-  <script type="module" src="./src/app.js"></script>
-</body>
+    </noscript>
+    <script type="module" src="./src/app/bootstrap.js"></script>
+  </body>
 </html>
