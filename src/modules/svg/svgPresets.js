@@ -1,0 +1,1 @@
+export const node = (x,y,w,h,t)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="#12203a" stroke="rgba(155,198,255,.35)"/><text x="${x+w/2}" y="${y+h/2+4}" text-anchor="middle" fill="#d7e6ff" font-size="10">${t}</text>`;

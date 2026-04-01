@@ -1,0 +1,5 @@
+.hero-visual, .diagram-wrap { border:1px solid var(--border); border-radius: var(--radius); background: #0b1428; padding: .8rem; }
+.page-lead { max-width: 68ch; }
+.matrix { display:grid; gap:.75rem; grid-template-columns: 1fr; }
+@media(min-width:900px){ .matrix { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+.inline-code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #9ad4ff; }
