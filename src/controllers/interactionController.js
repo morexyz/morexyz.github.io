@@ -2,6 +2,7 @@ export function createInteractionController(){
   let didBindHover = false;
   let teardownNav = () => {};
   let teardownHeaderScroll = () => {};
+  let teardownHeaderMetrics = () => {};
 
   function bindNav(root) {
     const header = root.querySelector('.site-header');
@@ -17,6 +18,7 @@ export function createInteractionController(){
       toggle.setAttribute('aria-expanded', String(isOpen));
       nav.hidden = !isOpen;
       header.dataset.menuOpen = String(isOpen);
+      window.dispatchEvent(new Event('header:layoutchange'));
       if (isOpen) {
         lastFocused = document.activeElement;
       } else if (returnFocus) {
@@ -95,11 +97,35 @@ export function createInteractionController(){
     };
   }
 
+  function bindHeaderMetrics(root) {
+    const header = root.querySelector('.site-header');
+    if (!header) return () => {};
+
+    const syncHeaderOffset = () => {
+      const height = Math.ceil(header.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--header-offset', `${height}px`);
+    };
+
+    syncHeaderOffset();
+    const resizeObserver = new ResizeObserver(syncHeaderOffset);
+    resizeObserver.observe(header);
+    window.addEventListener('resize', syncHeaderOffset);
+    window.addEventListener('header:layoutchange', syncHeaderOffset);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', syncHeaderOffset);
+      window.removeEventListener('header:layoutchange', syncHeaderOffset);
+    };
+  }
+
   return { init(root){
     teardownNav();
     teardownHeaderScroll();
+    teardownHeaderMetrics();
     teardownNav = bindNav(root);
     teardownHeaderScroll = bindHeaderScroll(root);
+    teardownHeaderMetrics = bindHeaderMetrics(root);
     if (!didBindHover) {
       root.addEventListener('mouseover', (e)=>{ if(e.target.closest('.btn,.card,.nav-link')) e.target.closest('.btn,.card,.nav-link')?.classList.add('is-hover'); });
       root.addEventListener('mouseout', (e)=>{ e.target.closest('.is-hover')?.classList.remove('is-hover'); });
